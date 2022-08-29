@@ -1,6 +1,6 @@
 import {
   ADDED,
-  ALLCOMPLETE,
+  ALLCOMPLETED,
   CLEARCOMPLETED,
   COLORSELECTED,
   DELETE,
@@ -20,6 +20,8 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         {
           id: nextTodoId(state),
+          text: action.payload,
+          completed: false,
         },
       ];
 
@@ -49,11 +51,11 @@ const todoReducer = (state = initialState, action) => {
     case DELETE:
       return state.filter(todo => todo.id !== action.payload);
 
-    case ALLCOMPLETE:
+    case ALLCOMPLETED:
       return state.map(todo => {
         return {
           ...todo,
-          complete: true,
+          completed: true,
         };
       });
 
